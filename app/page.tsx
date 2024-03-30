@@ -1,3 +1,9 @@
+import MapFilterItems from './components/mapFilter/MapFilterItems';
+
 export default function Home() {
-  return <div>Hello Airbnb</div>;
+  return (
+    <div className="container mx-auto px-5 lg:px-10">
+      <MapFilterItems />
+    </div>
+  );
 }
