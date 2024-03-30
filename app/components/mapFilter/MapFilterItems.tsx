@@ -24,7 +24,7 @@ export default function MapFilterItems({}: Props) {
   );
 
   return (
-    <div className="no-scrollbar mt-5 flex w-full gap-x-4 overflow-x-scroll">
+    <div className="no-scrollbar mt-5 flex w-full gap-x-6 overflow-x-scroll">
       {categoryItems.map((item) => (
         <Link
           key={item.id}
