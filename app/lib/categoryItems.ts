@@ -1,4 +1,4 @@
-interface CategoryProps {
+export interface Category {
   name: string;
   title: string;
   imageUrl: string;
@@ -6,7 +6,7 @@ interface CategoryProps {
   id: number;
 }
 
-export const categoryItems: CategoryProps[] = [
+export const categoryItems: Category[] = [
   {
     id: 0,
     name: 'beach',
