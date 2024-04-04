@@ -53,6 +53,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.51.2
     version: 7.51.2(react@18.2.0)
+  remeda:
+    specifier: ^1.57.1
+    version: 1.57.1
   tailwind-merge:
     specifier: ^2.2.2
     version: 2.2.2
@@ -4497,6 +4500,10 @@ packages:
     hasBin: true
     dependencies:
       jsesc: 0.5.0
+    dev: false
+
+  /remeda@1.57.1:
+    resolution: {integrity: sha512-CHrQFjgGw7y7d5WDDG21nzES2Z3Ae+s1ZjVAYjLOsoCceM1EMzVrSd4dx+Eb3QooR16tbbHeJhzk0q8qsaquTg==}
     dev: false
 
   /resolve-from@4.0.0:

@@ -20,8 +20,37 @@ export async function createHome({ kindeId }: { kindeId: string }) {
     },
   });
 
+  console.log('Found user with id: ', user?.id);
+
   if (data === null) {
-  } else if (!data.addedCategories && !data.addedDescription && !data.addedLocation) {
-    return redirect(`create/${data.id}/structure`);
+    const data = await prisma.home.create({
+      data: {
+        userId: user?.id,
+      },
+    });
+
+    console.log('created home with id ', data.id);
+
+    return redirect(`/newListing/${data.id}/structure`);
+  } else if (!data.categories && !data.description && !data.location) {
+    return redirect(`/newListing/${data.id}/structure`);
+  } else if (data.categories && !data.description) {
+    return redirect(`/newListing/${data.id}/description`);
   }
+}
+
+export async function submitCategories(formData: FormData) {
+  const categories = formData.get('categories') as string;
+  const homeId = formData.get('homeId') as string;
+
+  const data = await prisma.home.update({
+    where: {
+      id: homeId,
+    },
+    data: {
+      categories: categories,
+    },
+  });
+
+  return redirect(`./description`);
 }

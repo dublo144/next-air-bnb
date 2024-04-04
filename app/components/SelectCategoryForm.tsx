@@ -25,6 +25,7 @@ export default function SelectCategoryForm({}: Props) {
 
   return (
     <div className="mx-auto mb-36 mt-10 grid w-3/5 grid-cols-4 gap-8">
+      <input hidden defaultValue={selectedCategories.join(';')} name="categories" />
       {categoryItems.map((item) => (
         <div key={item.id} className="cursor-pointer">
           <Card
