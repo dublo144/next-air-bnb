@@ -31,10 +31,13 @@ model Home {
   location    String?
   guests      Int?
   bedrooms    Int?
+  beds        Int?
+  bathrooms   Int?
   country     String?
   photo       String?
   price       Int?
   categories  String?
+  privacyType String?
   createdAt   DateTime @default(now())
   User        User?    @relation(fields: [userId], references: [id])
   userId      String?

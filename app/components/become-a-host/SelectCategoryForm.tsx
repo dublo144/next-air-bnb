@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { categoryItems } from '../lib/categoryItems';
-import { Card, CardHeader } from './ui/card';
+import { categoryItems } from '../../lib/categoryItems';
+import { Card, CardHeader } from '../ui/card';
 import Image from 'next/image';
 
 type Props = {};

@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return <div className="mt-10">{children}</div>;
+  return <div className="flex flex-grow">{children}</div>;
 }

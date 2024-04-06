@@ -13,7 +13,7 @@ export default function FormSubmitButton({ label, ...props }: Props) {
   return (
     <Button disabled={pending} {...props}>
       <LoaderCircle className={cn('mr-2 hidden h-4 w-4 animate-spin', pending && 'block')} />
-      {label}
+      {pending ? 'Please wait' : label}
     </Button>
   );
 }

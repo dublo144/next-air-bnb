@@ -1,8 +1,9 @@
 'use client';
 
 import { submitCategories } from '@/app/actions';
-import SelectCategoryForm from '@/app/components/SelectCategoryForm';
 import FormSubmitButton from '@/app/components/base/button/FormSubmitButton';
+import SelectCategoryForm from '@/app/components/become-a-host/SelectCategoryForm';
+import WizardBottomBar from '@/app/components/become-a-host/WizardBottomBar';
 import { Button } from '@/app/components/ui/button';
 import Link from 'next/link';
 import React from 'react';
@@ -22,14 +23,7 @@ export default function StructureRoute({ params }: Props) {
       <form action={submitCategories}>
         <input hidden name="homeId" defaultValue={params.id} />
         <SelectCategoryForm />
-        <div className="fixed bottom-0 z-0 h-24 w-full border-t bg-white">
-          <div className="mx-auto flex h-full items-center justify-between px-5 lg:px-10">
-            <Button variant={'secondary'} asChild>
-              <Link href={'/'}>Cancel</Link>
-            </Button>
-            <FormSubmitButton label="Add categories" className="bg-rose-500 font-bold" />
-          </div>
-        </div>
+        <WizardBottomBar />
       </form>
     </>
   );
