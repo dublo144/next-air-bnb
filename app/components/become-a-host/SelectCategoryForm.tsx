@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import { categoryItems } from '../../lib/categoryItems';
 import { Card, CardHeader } from '../ui/card';
 import Image from 'next/image';
+import { submitCategories } from '@/app/actions';
+import WizardBottomBar from './WizardBottomBar';
+import { cn } from '@/lib/utils';
 
 type Props = {};
 
@@ -24,17 +27,26 @@ export default function SelectCategoryForm({}: Props) {
   };
 
   return (
-    <div className="mx-auto mb-36 mt-10 grid w-3/5 grid-cols-4 gap-8">
-      <input hidden defaultValue={selectedCategories.join(';')} name="categories" />
-      {categoryItems.map((item) => (
-        <div key={item.id} className="cursor-pointer">
+    <div className="mx-auto space-y-4">
+      <div>
+        <h1 className="mb-2 text-3xl font-bold tracking-tight transition-colors">
+          Which of these best describes your home?
+        </h1>
+        <h4 className="text-gray-500">Maximum 3 categories can be selected.</h4>
+      </div>
+
+      <div className="mx-auto mb-36 mt-10 grid grid-cols-3 gap-8">
+        <input hidden defaultValue={selectedCategories.join(';')} name="categories" />
+        {categoryItems.map((item) => (
           <Card
+            key={item.id}
             onClick={() => handleSelectDeselect(item.name)}
-            className={
-              selectedCategories.includes(item.name) ? 'border-primary border-rose-500' : ''
-            }
+            className={cn(
+              'h-full cursor-pointer border-2',
+              selectedCategories.includes(item.name) && 'border-primary border-rose-500'
+            )}
           >
-            <CardHeader>
+            <CardHeader className="flex h-full flex-row items-center space-x-3">
               <Image
                 src={item.imageUrl}
                 alt={item.name}
@@ -45,8 +57,8 @@ export default function SelectCategoryForm({}: Props) {
               <h3 className="font-bold">{item.title}</h3>
             </CardHeader>
           </Card>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

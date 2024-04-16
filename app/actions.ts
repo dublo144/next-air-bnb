@@ -29,13 +29,12 @@ export async function createHome({ kindeId }: { kindeId: string }) {
         userId: user?.id,
       },
     });
-
-    console.log('created home with id ', data.id);
-
     return redirect(`/become-a-host/${data.id}/structure`);
   } else if (!data.privacyType) {
     return redirect(`/become-a-host/${data.id}/privacy-type`);
-  } else if (!data.categories && !data.description && !data.location) {
+  } else if (!data.location) {
+    return redirect(`/become-a-host/${data.id}/location`);
+  } else if (!data.categories && !data.description) {
     return redirect(`/become-a-host/${data.id}/structure`);
   } else if (data.categories && !data.description) {
     return redirect(`/become-a-host/${data.id}/description`);
@@ -55,7 +54,7 @@ export async function submitCategories(formData: FormData) {
     },
   });
 
-  return redirect('./description');
+  return redirect('./privacy-type');
 }
 
 export async function submitPrivacyType(formData: FormData) {
@@ -73,6 +72,22 @@ export async function submitPrivacyType(formData: FormData) {
 
   return redirect('./location');
 }
+
+export const submitLocation = async (formData: FormData) => {
+  const location = formData.get('location') as string;
+  const homeId = formData.get('homeId') as string;
+
+  await prisma.home.update({
+    where: {
+      id: homeId,
+    },
+    data: {
+      location,
+    },
+  });
+
+  return redirect('./description');
+};
 
 export async function submitDescription(formData: FormData) {
   const title = formData.get('title') as string;

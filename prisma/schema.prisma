@@ -38,6 +38,8 @@ model Home {
   price       Int?
   categories  String?
   privacyType String?
+  draft       Boolean  @default(true)
+  published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   User        User?    @relation(fields: [userId], references: [id])
   userId      String?

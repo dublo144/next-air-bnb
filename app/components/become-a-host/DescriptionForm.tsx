@@ -7,7 +7,7 @@ import { Separator } from '../ui/separator';
 import { Textarea } from '../ui/textarea';
 import { Card, CardHeader } from '../ui/card';
 import Counter from '../base/counter/Counter';
-import { Bed, BedDoubleIcon, ShowerHeadIcon, Users2Icon } from 'lucide-react';
+import { Bed, ShowerHeadIcon, Users2Icon } from 'lucide-react';
 
 type Props = {};
 
