@@ -1,7 +1,7 @@
-import { submitPrivacyType } from '@/app/actions';
-import FormSubmitButton from '@/app/components/base/button/FormSubmitButton';
-import SelectPrivacyForm from '@/app/components/become-a-host/SelectPrivacyForm';
-import { Button } from '@/app/components/ui/button';
+import { submitPrivacyType } from '@/app/actions/actions';
+import FormSubmitButton from '@/components/base/button/FormSubmitButton';
+import SelectPrivacyForm from '@/components/become-a-host/SelectPrivacyForm';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import React from 'react';
 

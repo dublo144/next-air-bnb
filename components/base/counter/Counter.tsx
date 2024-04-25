@@ -10,7 +10,7 @@ export default function Counter({ inputName }: Props) {
   const [count, setCount] = useState<number>(0);
   return (
     <div className="flex items-center gap-4">
-      <input hidden name={inputName} value={count} />
+      <input hidden name={inputName} defaultValue={count} />
       <Button
         disabled={count === 0}
         variant={'outline'}

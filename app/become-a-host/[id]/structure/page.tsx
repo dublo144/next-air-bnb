@@ -1,9 +1,9 @@
 'use client';
 
-import { submitCategories } from '@/app/actions';
-import SelectCategoryForm from '@/app/components/become-a-host/SelectCategoryForm';
-import WizardBottomBar from '@/app/components/become-a-host/WizardBottomBar';
+import SelectCategoryForm from '@/components/become-a-host/SelectCategoryForm';
+import WizardBottomBar from '@/components/become-a-host/WizardBottomBar';
 import React from 'react';
+import { submitCategories } from './actions';
 
 type Props = { params: { id: string } };
 

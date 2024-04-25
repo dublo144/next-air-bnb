@@ -1,6 +1,6 @@
-import { submitDescription } from '@/app/actions';
-import DescriptionForm from '@/app/components/become-a-host/DescriptionForm';
-import WizardBottomBar from '@/app/components/become-a-host/WizardBottomBar';
+import { submitDescription } from '@/app/actions/actions';
+import DescriptionForm from '@/components/become-a-host/DescriptionForm';
+import WizardBottomBar from '@/components/become-a-host/WizardBottomBar';
 import React from 'react';
 
 type Props = { params: { id: string } };

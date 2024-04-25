@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import ListingCard, { LoadingSkeleton } from './components/explore/ListingCard';
-import MapFilterItems from './components/mapFilter/MapFilterItems';
-import { Separator } from './components/ui/separator';
-import prisma from './lib/db';
+import ListingCard, { LoadingSkeleton } from '../components/explore/ListingCard';
+import MapFilterItems from '../components/mapFilter/MapFilterItems';
+import { Separator } from '../components/ui/separator';
+import prisma from '../lib/db';
 import { FileQuestion } from 'lucide-react';
 
 type Props = {

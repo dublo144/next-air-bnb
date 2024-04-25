@@ -1,9 +1,26 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import prisma from './lib/db';
-import { supabase } from './lib/supabase';
+import prisma from '../../lib/db';
+import { supabase } from '../../lib/supabase';
 import { User } from '@prisma/client';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+
+export async function getCurrentUser() {
+  const { getUser } = getKindeServerSession();
+  const kindeUser = await getUser();
+
+  // User not logged in for some reason
+  if (!kindeUser || kindeUser === null || !kindeUser.id) {
+    return redirect('/api/auth/login');
+  }
+
+  return await prisma.user.findFirstOrThrow({
+    where: {
+      kindeId: kindeUser.id,
+    },
+  });
+}
 
 export async function createHome({ user }: { user: User | null }) {
   if (!user) {
@@ -18,8 +35,6 @@ export async function createHome({ user }: { user: User | null }) {
       createdAt: 'desc',
     },
   });
-
-  console.log('Found user with id: ', user?.id);
 
   if (data === null) {
     const data = await prisma.home.create({
@@ -37,22 +52,6 @@ export async function createHome({ user }: { user: User | null }) {
   } else if (data.categories && !data.description) {
     return redirect(`/become-a-host/${data.id}/description`);
   }
-}
-
-export async function submitCategories(formData: FormData) {
-  const categories = formData.get('categories') as string;
-  const homeId = formData.get('homeId') as string;
-
-  await prisma.home.update({
-    where: {
-      id: homeId,
-    },
-    data: {
-      categories,
-    },
-  });
-
-  return redirect('./privacy-type');
 }
 
 export async function submitPrivacyType(formData: FormData) {
@@ -98,6 +97,7 @@ export async function submitDescription(formData: FormData) {
   const bathrooms = formData.get('bathrooms');
 
   const homeId = formData.get('homeId') as string;
+  const user = await getCurrentUser();
 
   const { data: imageUpload } = await supabase.storage
     .from('images')
@@ -119,6 +119,16 @@ export async function submitDescription(formData: FormData) {
       bedrooms: Number(bedrooms),
       beds: Number(beds),
       bathrooms: Number(bathrooms),
+      published: true,
+    },
+  });
+
+  await prisma.user.update({
+    data: {
+      isHost: true,
+    },
+    where: {
+      id: user.id,
     },
   });
 

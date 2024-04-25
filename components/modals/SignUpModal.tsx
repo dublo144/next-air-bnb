@@ -3,7 +3,7 @@
 import React from 'react';
 import { Github } from 'lucide-react';
 import { useCallback, useState } from 'react';
-import useSignUpModal from '@/app/hooks/useSignUpModal';
+import useSignUpModal from '@/hooks/useSignUpModal';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 import Modal from '../base/modal/Modal';

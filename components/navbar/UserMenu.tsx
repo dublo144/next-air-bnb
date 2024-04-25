@@ -12,9 +12,8 @@ import {
 } from '../ui/dropdown-menu';
 import Link from 'next/link';
 import { Url } from 'next/dist/shared/lib/router/router';
-import { createHome } from '@/app/actions';
-import prisma from '@/app/lib/db';
-import { redirect } from 'next/navigation';
+import { createHome } from '@/app/actions/actions';
+import prisma from '@/lib/db';
 
 type Props = {};
 

@@ -20,7 +20,7 @@ const navigationItems: { href: string; label: string }[] = [
     label: 'Inbox',
   },
   {
-    href: '/listings',
+    href: '/my-listings',
     label: 'My listings',
   },
   {

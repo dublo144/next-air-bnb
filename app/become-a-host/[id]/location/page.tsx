@@ -1,6 +1,6 @@
-import { submitLocation } from '@/app/actions';
-import LocationForm from '@/app/components/become-a-host/LocationForm';
-import WizardBottomBar from '@/app/components/become-a-host/WizardBottomBar';
+import { submitLocation } from '@/app/actions/actions';
+import LocationForm from '@/components/become-a-host/LocationForm';
+import WizardBottomBar from '@/components/become-a-host/WizardBottomBar';
 import React from 'react';
 
 type Props = { params: { id: string } };

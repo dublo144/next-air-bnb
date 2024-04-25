@@ -1,6 +1,6 @@
 'use client';
 
-import { privacyTypeItems } from '@/app/lib/privacyItems';
+import { privacyTypeItems } from '@/lib/privacyItems';
 import React, { Key, useState } from 'react';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import Image from 'next/image';
