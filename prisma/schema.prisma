@@ -21,6 +21,7 @@ model User {
   firstName String
   lastName  String
   avatarUrl String?
+  isHost    Boolean @default(false)
   Home      Home[]
 }
 

@@ -3,14 +3,12 @@
 import { redirect } from 'next/navigation';
 import prisma from './lib/db';
 import { supabase } from './lib/supabase';
+import { User } from '@prisma/client';
 
-// TODO: Dont use kindeId
-export async function createHome({ kindeId }: { kindeId: string }) {
-  const user = await prisma.user.findUnique({
-    where: {
-      kindeId: kindeId,
-    },
-  });
+export async function createHome({ user }: { user: User | null }) {
+  if (!user) {
+    return redirect('/api/auth/login');
+  }
 
   const data = await prisma.home.findFirst({
     where: {

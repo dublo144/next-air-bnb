@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 
@@ -6,15 +7,15 @@ type Props = {};
 
 export default function Search({}: Props) {
   return (
-    <div className="border w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
+    <div className="w-full cursor-pointer rounded-full border py-2 shadow-sm transition hover:shadow-md md:w-auto">
       <div className="flex flex-row items-center justify-between">
-        <div className="text-sm font-semibold px-6">Anywhere</div>
-        <div className="hidden sm:block text-sm font-semibold px-6 border-x flex-1 text-center">
+        <div className="px-6 text-sm font-semibold">Anywhere</div>
+        <div className="hidden flex-1 border-x px-6 text-center text-sm font-semibold sm:block">
           Any week
         </div>
-        <div className="text-sm pl-6 pr-2 flex flex-row items-center gap-3">
+        <div className="flex flex-row items-center gap-3 pl-6 pr-2 text-sm">
           <div className="hidden sm:block">Add guests</div>
-          <div className="p-2 bg-rose-500 rounded-full text-white">
+          <div className="rounded-full bg-rose-500 p-2 text-white">
             <SearchIcon size={20} />
           </div>
         </div>

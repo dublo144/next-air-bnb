@@ -1,20 +1,24 @@
+'use client';
+
 import React from 'react';
-import Container from '../base/container/Container';
 import Logo from './Logo';
 import Search from './Search';
-import UserMenu from './UserMenu';
+import { usePathname } from 'next/navigation';
+import HostingNavigation from './HostingNavigation';
 
-type Props = {};
+type Props = { userMenu: React.ReactNode };
 
-export default function Navbar({}: Props) {
+export default function Navbar({ userMenu }: Props) {
+  const pathname = usePathname();
+
   return (
     <nav className="w-full border-b">
       <div className="container mx-auto flex items-center justify-between px-5 py-5 lg:px-10">
         <Logo />
 
-        <Search />
+        {pathname.startsWith('/hosting') ? <HostingNavigation /> : <Search />}
 
-        <UserMenu />
+        {userMenu}
       </div>
     </nav>
   );

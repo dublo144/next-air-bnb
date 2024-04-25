@@ -2,6 +2,7 @@ import { Star } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import currency from 'currency.js';
+import { Skeleton } from '../ui/skeleton';
 
 type Props = {
   imageUrl: string;
@@ -38,6 +39,19 @@ export default function ListingCard({ imageUrl, location, description, price, ho
       <div className="space-x-1">
         <span className="font-bold">{currency(price).format()}</span>
         <span>/ night</span>
+      </div>
+    </div>
+  );
+}
+
+export function LoadingSkeleton() {
+  return (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="relative mb-4 h-72" />
+      <div className="flex justify-between">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+        <Skeleton className="h-4 w-[150px]" />
       </div>
     </div>
   );
