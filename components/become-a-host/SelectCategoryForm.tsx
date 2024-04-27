@@ -26,15 +26,14 @@ export default function SelectCategoryForm({}: Props) {
   };
 
   const [scope, animate] = useAnimate();
-
   useEffect(() => {
     const sequence: AnimationSequence = [
       [
         '.category-heading',
         { opacity: 1, transform: 'translateY(1rem)' },
-        { duration: 1.5, ease: [0, 0.71, 0.2, 1.01] },
+        { duration: 1.2, ease: [0, 0.71, 0.2, 1.01] },
       ],
-      ['.category-card', { x: 0, opacity: 1 }, { delay: stagger(0.2) }],
+      ['.category-card', { x: 0, opacity: 1 }, { delay: stagger(0.1) }],
     ];
     animate(sequence);
   });

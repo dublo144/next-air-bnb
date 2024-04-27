@@ -8,8 +8,10 @@ import { submitCategories } from './actions';
 type Props = { params: { id: string } };
 
 export default function StructureRoute({ params }: Props) {
+  const submitCategoriesWithHomeId = submitCategories.bind(null, params.id);
+
   return (
-    <form action={submitCategories} className="flex flex-grow">
+    <form action={submitCategoriesWithHomeId} className="flex flex-grow">
       <div className="mx-auto my-auto w-3/4">
         <input hidden name="homeId" defaultValue={params.id} />
         <SelectCategoryForm />
