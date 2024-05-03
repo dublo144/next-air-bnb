@@ -25,7 +25,11 @@ async function getListings(filter?: string) {
       id: true,
       price: true,
       description: true,
-      location: true,
+      location: {
+        select: {
+          fullAddress: true,
+        },
+      },
       User: {
         select: {
           firstName: true,
@@ -70,7 +74,7 @@ async function Listings({ searchParams }: Props) {
       {listings.map((listing) => (
         <ListingCard
           key={listing.id}
-          location={listing.location as string}
+          location={listing.location?.fullAddress as string}
           imageUrl={listing.photo as string}
           description={listing.description as string}
           price={listing.price as number}

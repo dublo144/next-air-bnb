@@ -2,13 +2,14 @@ import React from 'react';
 import usePlacesAutocomplete from 'use-places-autocomplete';
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from '../ui/command';
 import { Separator } from '@/components/ui/separator';
+import { Location } from '@/components/become-a-host/LocationForm';
 
 type Props = {};
 
 export default function AddressSearch({
   onSelectAddress,
 }: {
-  onSelectAddress: (address: string) => void;
+  onSelectAddress: (location: Location) => void;
 }) {
   const {
     ready,
@@ -36,10 +37,10 @@ export default function AddressSearch({
                 <CommandItem
                   key={place_id}
                   value={description}
-                  onSelect={(value) => {
+                  onSelect={(value: string) => {
                     setValue(value, false); // Set the value to the address, but dont refetch
                     clearSuggestions();
-                    onSelectAddress(description);
+                    onSelectAddress({ fullAddress: description, placeId: place_id });
                   }}
                 >
                   {description}

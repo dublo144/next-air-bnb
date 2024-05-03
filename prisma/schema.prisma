@@ -26,10 +26,9 @@ model User {
 }
 
 model Home {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   title       String?
   description String?
-  location    String?
   guests      Int?
   bedrooms    Int?
   beds        Int?
@@ -39,9 +38,20 @@ model Home {
   price       Int?
   categories  String?
   privacyType String?
-  draft       Boolean  @default(true)
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  User        User?    @relation(fields: [userId], references: [id])
+  draft       Boolean   @default(true)
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  User        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String?
+  location    Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locationId  String?   @unique
+}
+
+model Location {
+  id          String   @id @default(uuid())
+  fullAddress String?
+  lng         Decimal?
+  lat         Decimal?
+  placeId     String?
+  Home        Home?
 }

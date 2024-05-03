@@ -5,6 +5,7 @@ import prisma from '../../lib/db';
 import { supabase } from '../../lib/supabase';
 import { User } from '@prisma/client';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { Location } from '@/components/become-a-host/LocationForm';
 
 export async function getCurrentUser() {
   const { getUser } = getKindeServerSession();
@@ -45,7 +46,7 @@ export async function createHome({ user }: { user: User | null }) {
     return redirect(`/become-a-host/${data.id}/structure`);
   } else if (!data.privacyType) {
     return redirect(`/become-a-host/${data.id}/privacy-type`);
-  } else if (!data.location) {
+  } else if (!data.locationId) {
     return redirect(`/become-a-host/${data.id}/location`);
   } else if (!data.categories && !data.description) {
     return redirect(`/become-a-host/${data.id}/structure`);
@@ -71,15 +72,26 @@ export async function submitPrivacyType(formData: FormData) {
 }
 
 export const submitLocation = async (formData: FormData) => {
-  const location = formData.get('location') as string;
+  const locationJson = formData.get('homeLocation') as string;
   const homeId = formData.get('homeId') as string;
+
+  const { fullAddress, placeId, lat, lng }: Location = JSON.parse(locationJson);
+
+  const location = await prisma.location.create({
+    data: {
+      fullAddress,
+      placeId,
+      lat,
+      lng,
+    },
+  });
 
   await prisma.home.update({
     where: {
       id: homeId,
     },
     data: {
-      location,
+      locationId: location.id,
     },
   });
 
